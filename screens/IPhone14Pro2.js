@@ -362,7 +362,7 @@ const styles = StyleSheet.create({
   byContinuingYouContainer: {
     height: "4.69%",
     top: "89.2%",
-    left: 127,
+    left: 137,
     fontSize: FontSize.size_4xs,
     lineHeight: 11,
     width: 132,
