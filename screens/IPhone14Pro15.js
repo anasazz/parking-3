@@ -3,9 +3,12 @@ import { Image, StyleSheet, StatusBar, View, Pressable, Text, Alert } from "reac
 import { useNavigation } from "@react-navigation/native";
 import { Color, Border, Padding } from "../GlobalStyles";
 import axios from "axios";
+import { Camera, useCameraDevices, useIsAppForeground } from "react-native-vision-camera";
+import { ActivityIndicator } from "react-native";
 
 const IPhone14Pro15 = () => {
   const navigation = useNavigation();
+
 
   const [result, setResult] = React.useState({
     "can park or not": "yes",
@@ -16,17 +19,54 @@ const IPhone14Pro15 = () => {
     "person can park": "resident"
 })
 
+const newCameraPermission = async() => await Camera.requestCameraPermission()
+
+console.log('$$$$$$$$$$$' , devices)
+
+
+
+React.useEffect(() => {
+  newCameraPermission()
+
+}, [])
+
 
   React.useEffect(() => {
+
+
+    if (photo) return null
     callBackend()
   
   
+  }, [photo])
+
+  const camera = React.useRef(null)
+
+
+  const [cameraPermission, setCameraPermission] = React.useState();
+
+  React.useEffect(() => {
+    (async () => {
+      const cameraPermissionStatus = await Camera.requestCameraPermission();
+      setCameraPermission(cameraPermissionStatus);
+    })();
+  }, []);
+
+  const photo = async () => await camera.current.takePhoto({
+    flash: 'on'
+  })
+
   
-  }, [])
+
+  console.log('$$$$photo', photo);
   
+
+  const devices = useCameraDevices();
+  const cameraDevice = devices.back;
 
   const callBackend = () => {
 
+    console.log(photo);
     const data = {
       "file_id": null,
       "upload_file": null
@@ -59,13 +99,32 @@ const IPhone14Pro15 = () => {
     <View style={styles.iphone14Pro15}>
     
 
-      <Image
+      {/* <Image
         style={[styles.parkeringskylt1Icon, styles.iconLayout]}
         resizeMode="cover"
         source={require("../assets/parkeringskylt-1.png")}
-      />
+      /> */}
+
+{cameraDevice && cameraPermission === 'authorized' ? 
+
+        <Camera
+        ref={camera}
+        {...props}
+        style={[styles.parkeringskylt1Icon, styles.iconLayout]}
+
+        isActive={true}
+        photo={true}
+  
+          device={cameraDevice}
+        
+        />
+   :
+   <ActivityIndicator style={{marginTop:70}} size="large" color="#1C6758" />
+    }
+
+
       <StatusBar barStyle="default" />
-      <View style={styles.homeindicator}>
+      {/* <View style={styles.homeindicator}>
         <View style={styles.homeIndicator} />
       </View>
 
@@ -106,7 +165,7 @@ const IPhone14Pro15 = () => {
         style={[styles.flashOnIcon, styles.iconLayout]}
         resizeMode="cover"
         source={require("../assets/flash-on.png")}
-      />
+      /> */}
     </View>
   );
 };

@@ -51,7 +51,13 @@ const App = () => {
     {/* <AppearanceProvider> */}
       <NavigationContainer>
         {hideSplashScreen ? (
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Navigator initialRouteName="IPhone14Pro15" screenOptions={{ headerShown: false }}>
+            <Stack.Screen
+              name="IPhone14Pro15"
+              component={IPhone14Pro15}
+              options={{ headerShown: false }}
+            />
+            
             <Stack.Screen
               name="IPhone14Pro2"
               component={IPhone14Pro2}
@@ -87,11 +93,7 @@ const App = () => {
               component={IPhone14Pro6}
               options={{ headerShown: false }}
             />
-            <Stack.Screen
-              name="IPhone14Pro15"
-              component={IPhone14Pro15}
-              options={{ headerShown: false }}
-            />
+            
             <Stack.Screen
               name="IPhone14Pro7"
               component={IPhone14Pro7}
