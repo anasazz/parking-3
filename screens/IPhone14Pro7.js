@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   tapToScan: {
     fontSize: FontSize.size_2xl,
     lineHeight: 38,
-    fontWeight: "700",
+    // fontWeight: "700",
     fontFamily: FontFamily.dMSansBold,
     color: Color.darkslategray_200,
     textAlign: "center",

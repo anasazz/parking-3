@@ -123,7 +123,7 @@ const IPhone14Pro41 = () => {
           source={require("../assets/vector-33.png")}
         />
         <Text style={[styles.youCanPark, styles.youTypo]}>
-          You can park until 11:41
+          You can park until 11:41 
         </Text>
       </View>
       <View style={[styles.rectangleGroup, styles.childGroupLayout]}>

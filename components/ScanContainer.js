@@ -30,7 +30,7 @@ const ScanContainer = ({ iconCheckCircle }) => {
           source={require("../assets/vector-94.png")}
         />
         <Text
-          style={[styles.get15Scans, styles.ml13, styles.get15ScansFlexBox]}
+          style={[styles.get15Scans, styles.ml13]}
         >
           Get 15 scans for free!
         </Text>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_base,
     letterSpacing: 0,
     // lineHeight: 11,
-    fontWeight: "700",
+
     fontFamily: FontFamily.dMSansBold,
     color: Color.midnightblue_200,
     textAlign: "left",

@@ -1,13 +1,64 @@
 import * as React from "react";
-import { Image, StyleSheet, StatusBar, View, Pressable } from "react-native";
+import { Image, StyleSheet, StatusBar, View, Pressable, Text, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Color, Border, Padding } from "../GlobalStyles";
+import axios from "axios";
 
 const IPhone14Pro15 = () => {
   const navigation = useNavigation();
 
+  const [result, setResult] = React.useState({
+    "can park or not": "yes",
+    "can park until": "9pm",
+    "require payment": "no",
+    "p-disc required": "no",
+    "park to right": "yes",
+    "person can park": "resident"
+})
+
+
+  React.useEffect(() => {
+    callBackend()
+  
+  
+  
+  }, [])
+  
+
+  const callBackend = () => {
+
+    const data = {
+      "file_id": null,
+      "upload_file": null
+  }
+
+    axios.post('https://parkscan.pythonanywhere.com/api/files/object_detection/', data)
+    .then(response => {
+      setResult(response.data)
+
+      Alert.alert(
+        
+        `
+        Can park or not :  ${result['can park or not']} \n 
+        Can park until :  ${result['can park until']} \n 
+        Require payment :  ${result['require payment']} \n 
+        P-disc required :  ${result['p-disc required']} \n 
+        Park to right :  ${result['park to right']} \n 
+        Person can park :  ${result['person can park']} 
+  
+        `)
+      
+    
+    })
+    .catch(error => {
+      Alert.alert("helllllllll$$$$$$$$" , error);
+    })
+  }
+
   return (
     <View style={styles.iphone14Pro15}>
+    
+
       <Image
         style={[styles.parkeringskylt1Icon, styles.iconLayout]}
         resizeMode="cover"
@@ -17,8 +68,11 @@ const IPhone14Pro15 = () => {
       <View style={styles.homeindicator}>
         <View style={styles.homeIndicator} />
       </View>
+
       <Pressable style={[styles.backBtn, styles.backBtnPosition]}>
         <View style={[styles.backBtnChild, styles.childShadowBox]} />
+        
+      
         <Pressable
           style={styles.rectangleParent}
           onPress={() => navigation.navigate("IPhone14Pro7")}
@@ -32,6 +86,7 @@ const IPhone14Pro15 = () => {
         </Pressable>
       </Pressable>
       <Image
+      
         style={[
           styles.iphone14Pro15Child,
           styles.backBtnPosition,

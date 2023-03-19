@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
   fitTheWhole: {
     fontSize: FontSize.size_xs,
     // lineHeight: 18,
-    fontWeight: "500",
+    // fontWeight: "500",
     fontFamily: FontFamily.dMSansMedium,
     color: Color.gray_200,
     textAlign: "left",
@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
   someThingsBefore: {
     fontSize: FontSize.size_2xl,
     lineHeight: 38,
-    fontWeight: "700",
+    // fontWeight: "700",
     fontFamily: FontFamily.dMSansBold,
     color: Color.darkslategray_200,
     textAlign: "center",
@@ -486,7 +486,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_sm,
     letterSpacing: 0,
     // lineHeight: 18,
-    fontWeight: "500",
+    // fontWeight: "500",
     fontFamily: FontFamily.dMSansMedium,
     color: Color.labelColorDarkPrimary,
     textAlign: "center",

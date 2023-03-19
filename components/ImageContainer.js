@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_base,
     letterSpacing: 0,
     // lineHeight: 11,
-    fontWeight: "700",
+
     fontFamily: FontFamily.dMSansBold,
     color: Color.midnightblue_200,
     textAlign: "left",
     display: "flex",
-    height: 27,
+ 
     alignItems: "center",
   },
   iconCreditCardParent: {

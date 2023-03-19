@@ -30,9 +30,9 @@ const ParkContainer =()=> {
           source={require("../assets/vector-96.png")}
         />
         <Text
-          style={[styles.youCanPark, styles.ml13, styles.youCanParkFlexBox]}
+          style={[styles.youCanPark, styles.ml13]}
         >
-          You can park until 11:41
+          You can park until 11:41 
         </Text>
       </View>
     </View>
@@ -73,7 +73,7 @@ frameChild: {
     fontSize: FontSize.size_base,
     letterSpacing: 0,
     // lineHeight: 11,
-    fontWeight: "700",
+
     fontFamily: FontFamily.dMSansBold,
     color: Color.midnightblue_200,
     textAlign: "left",

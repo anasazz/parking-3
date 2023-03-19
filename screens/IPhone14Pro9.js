@@ -19,6 +19,8 @@ import {
 const IPhone14Pro9 = () => {
   return (
     <View style={styles.iphone14Pro9}>
+
+
       <Image
         style={styles.parkeringskylt1Icon}
         resizeMode="cover"

@@ -1,8 +1,8 @@
 /* fonts */
 export const FontFamily = {
-  dMSansBold: "DM Sans_bold",
-  dMSansMedium: "DM Sans_medium",
-  dMSansRegular: "DM Sans_regular",
+  dMSansBold: "DM_Sans_bold",
+  dMSansMedium: "DM_Sans_medium",
+  dMSansRegular: "DM_Sans_regular",
   defaultBoldBody1: "Inter",
   interThin: "Inter_thin",
   interMedium: "Inter_medium",

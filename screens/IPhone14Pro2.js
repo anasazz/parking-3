@@ -1,3 +1,7 @@
+
+
+
+
 import {
   Image,
   StyleSheet,
@@ -15,6 +19,9 @@ import ScanContainer from "../components/ScanContainer";
 import ParkingDiscContainer from "../components/ParkingDiscContainer";
 import ImageContainer from "../components/ImageContainer";
 import ParkContainer from "../components/ParkContainer";
+
+import { AppleButton } from '@invertase/react-native-apple-authentication';
+
 import {
   Color,
   FontFamily,
@@ -25,13 +32,19 @@ import {
 } from "../GlobalStyles";
 import { GoogleSignin,statusCodes } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
-import appleAuth, {
+import  {
+  appleAuth,
   AppleAuthRequestOperation,
   AppleAuthRequestScope,
 } from '@invertase/react-native-apple-authentication';
 import { navigate } from "@react-navigation/routers/lib/typescript/src/CommonActions";
 // import axios from 'axios';
 // import authConfig from '../googleAuth.json'
+
+// import { appleAuth } from '@invertase/react-native-apple-authentication';
+
+
+
 
 GoogleSignin.configure({
   webClientId:
@@ -46,6 +59,30 @@ const IPhone14Pro2 = () => {
   //GOOGLE Sign in
   const [userInfo, setUserInfo] = useState(null); 
   
+
+  const onAppleButtonPress =  async  () => {
+    console.log("pressed");
+    // Start the sign-in request
+    const appleAuthRequestResponse = await appleAuth.performRequest({
+      requestedOperation: appleAuth.Operation.LOGIN,
+      requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+    });
+  
+    // Ensure Apple returned a user identityToken
+    if (!appleAuthRequestResponse.identityToken) {
+      throw new Error('Apple Sign-In failed - no identify token returned');
+    }
+  
+    // Create a Firebase credential from the response
+    const { identityToken, nonce } = appleAuthRequestResponse;
+    const appleCredential = auth.AppleAuthProvider.credential(identityToken, nonce);
+  
+    const user = auth().signInWithCredential(appleCredential)
+    console.log("user $$$$$$$$$$$" , user);
+    // Sign the user in with the credential
+    return  navigation.navigate("IPhone14Pro5");
+
+  }
  
  const onGoogleButtonPress = async () => {
   let isLoginSuccessful = false;
@@ -205,7 +242,8 @@ const IPhone14Pro2 = () => {
         <TouchableOpacity
         style={styles.signinwithapple}
         activeOpacity={0.2}
-        onPress={handleAppleLogin}
+        onPress={() => onAppleButtonPress().then(() => console.log('Apple sign-in complete!'))}
+
       >
         <View style={styles.appleLogo}>
           <Image
@@ -214,6 +252,10 @@ const IPhone14Pro2 = () => {
             source={require("../assets/vector.png")}
           />
         </View>
+
+
+
+
         <Text style={[styles.continueWithApple, styles.ml11]}>
           Continue with Apple
         </Text>
@@ -281,16 +323,16 @@ const styles = StyleSheet.create({
   },
   noMoreFinesTypo: {
     fontFamily: FontFamily.dMSansMedium,
-    fontWeight: "500",
+    // fontWeight: "500",
   },
   unsplashp5a9mj4vlsIcon: {
-    marginTop: -424,
+    marginTop: -474,
     width: "117.1%",
     top: "50%",
     right: "-17.1%",
     left: "0%",
     maxWidth: "100%",
-    height: 861,
+    height: 961,
     position: "absolute",
     overflow: "hidden",
   },
@@ -318,7 +360,7 @@ const styles = StyleSheet.create({
   continueWithApple: {
     fontSize: FontSize.defaultBoldBody1_size,
     lineHeight: 22,
-    fontWeight: "600",
+    // fontWeight: "600",
     fontFamily: FontFamily.defaultBoldBody1,
     textAlign: "left",
     width: 170,
@@ -362,10 +404,10 @@ const styles = StyleSheet.create({
   byContinuingYouContainer: {
     height: "4.69%",
     top: "89.2%",
-    left: 137,
+    left: 127,
     fontSize: FontSize.size_4xs,
     lineHeight: 11,
-    width: 132,
+    width: 182,
   },
   noMoreFines: {
     height: "7.14%",
